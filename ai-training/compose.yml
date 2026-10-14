@@ -1,0 +1,15 @@
+services:
+  app:
+    build:
+      context: .
+    tty: true
+    volumes:
+      # Next.js のコードはパソコン側の src/ に置く
+      - ./src:/app
+    environment:
+      # Windows で保存が画面に反映されないとき用（npm run dev -- --webpack と組み合わせる）
+      - WATCHPACK_POLLING=true
+      - PATH=/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    command: tail -f /dev/null
+    ports:
+      - "3000:3000"
