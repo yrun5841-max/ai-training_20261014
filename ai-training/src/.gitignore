@@ -42,3 +42,7 @@ next-env.d.ts
 
 # shuffle lunch data
 /data/
+
+
+# Windows からコピーしたときにできる付属ファイル
+*:Zone.Identifier
