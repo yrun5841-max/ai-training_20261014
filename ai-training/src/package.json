@@ -10,9 +10,12 @@
     "test": "vitest"
   },
   "dependencies": {
+    "firebase": "^13.2.0",
+    "jose": "^6.2.17",
     "next": "16.4.0",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "^4",

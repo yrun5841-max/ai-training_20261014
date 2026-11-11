@@ -3,6 +3,8 @@
 import { randomUUID } from "node:crypto";
 import { cookies } from "next/headers";
 import { refresh } from "next/cache";
+import { getSession } from "@/lib/auth";
+import { saveEntryName } from "@/lib/firestore";
 import { currentYear, getCurrentRound } from "@/lib/schedule";
 import { tokenCookie } from "@/lib/session";
 import { updateRound } from "@/lib/store";
@@ -17,6 +19,20 @@ export async function apply(_prev: ApplyState, formData: FormData): Promise<Appl
 
   const result = validateApplication(formData, currentYear());
   if (!result.ok) return { error: result.error };
+
+  // Firestore には本人の権限で書き込むので、ログインが必要
+  const session = await getSession();
+  if (!session) return { error: "参加するには、先に Google でログインしてください" };
+  try {
+    await saveEntryName(session.idToken, {
+      roundKey: round.key,
+      uid: session.user.uid,
+      name: result.value.name,
+    });
+  } catch (error) {
+    console.error(error);
+    return { error: "申し込みを保存できませんでした。時間をおいてもう一度お試しください" };
+  }
 
   const cookieStore = await cookies();
   const existingToken = cookieStore.get(tokenCookie(round.key))?.value;

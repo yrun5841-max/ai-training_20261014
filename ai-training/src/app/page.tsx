@@ -3,6 +3,7 @@ import { io } from "next/cache";
 import { ApplyForm } from "./apply-form";
 import { cancel } from "./actions";
 import { CategoryBadge } from "./category-badge";
+import { UserMenu } from "./user-menu";
 import { loadParticipantView, type ParticipantStatus } from "@/lib/participant";
 import { currentYear, formatDate, formatMonth, type Round } from "@/lib/schedule";
 import { categories, departments, type Entry } from "@/lib/store";
@@ -11,8 +12,11 @@ export default function Home() {
   return (
     <div className="flex flex-1 flex-col">
       <header className="border-b border-line bg-surface">
-        <div className="mx-auto max-w-2xl px-4 py-4 sm:px-6">
+        <div className="mx-auto flex max-w-2xl flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-6">
           <p className="text-xl font-bold">シャッフルランチ</p>
+          <Suspense fallback={<div className="h-10 w-36" aria-busy="true" />}>
+            <UserMenu />
+          </Suspense>
         </div>
       </header>
 
