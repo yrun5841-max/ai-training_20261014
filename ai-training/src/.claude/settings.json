@@ -4,6 +4,9 @@
       "Read(./.env)",
       "Edit(./.env)",
       "Write(./.env)"
+    ],
+    "ask": [
+      "Bash(git push *)"
     ]
   },
   "hooks": {

@@ -12,7 +12,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - Docker コンテナの中で動いています。
 - 開発サーバーは人が実行するので、`npm run dev` は実行しないでください。
-- git コマンドは実行しないでください。
+
+## git
+
+- コミットとプッシュは、頼まれたときだけ行ってください。
+- コミットの前に、対象のファイルとコミットメッセージを見せてください。
+- コミットメッセージは日本語で書いてください。
 
 ## コマンド
 

@@ -4,8 +4,8 @@ services:
       context: .
     tty: true
     volumes:
-      # Next.js のコードはパソコン側の src/ に置く
-      - ./src:/home/node/app
+      # プロジェクトのフォルダ全体を見せる（.git も見えるようにする）
+      - .:/home/node/app
     command: tail -f /dev/null
     ports:
       - "3000:3000"
